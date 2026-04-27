@@ -1,0 +1,254 @@
+/* 1. Layout de bază */
+.main-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* 2. Navbar & Navigarea Utilizatorului */
+.navbar {
+  background-color: #ffffff;
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.user-control {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 50px;
+  transition: background 0.2s ease;
+}
+
+.user-badge:hover {
+  background-color: #f1f5f9;
+}
+
+.avatar-nav {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #6366f1;
+  object-fit: cover;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.user-sub {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* 3. Butoane (Auth & Logout) */
+.auth-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
+  transition: transform 0.2s;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #6366f1;
+  border: 2px solid #6366f1;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-logout {
+  background-color: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  transform: translateY(-1px);
+}
+
+/* 4. Grid de Pisici */
+.page-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.cat-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.cat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.cat-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(15, 23, 42, 0.8);
+  color: white;
+  padding: 8px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* 5. Butoane Adopție */
+.btn-adopt {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.btn-adopt.active {
+  background-color: #10b981; /* Verde pentru succes */
+  color: white;
+  cursor: pointer;
+}
+
+.btn-adopt.disabled {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* 6. Profil Utilizator */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 550px;
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+.btn-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.avatar-large {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  border: 4px solid #f8fafc;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tech-info {
+  margin-top: 2.5rem;
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.id-code {
+  font-family: monospace;
+  background: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 7. Animații */
+.fade-in {
+  animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
