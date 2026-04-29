@@ -1,4 +1,3 @@
-/* 1. Layout de bază */
 .main-container {
   min-height: 100vh;
   background-color: #f8fafc;
@@ -12,7 +11,6 @@
   padding: 2rem;
 }
 
-/* 2. Navbar & Navigarea Utilizatorului */
 .navbar {
   background-color: #ffffff;
   padding: 0.75rem 2rem;
@@ -70,7 +68,6 @@
   color: #64748b;
 }
 
-/* 3. Butoane (Auth & Logout) */
 .auth-group {
   display: flex;
   gap: 0.75rem;
@@ -112,7 +109,6 @@
   transform: translateY(-1px);
 }
 
-/* 4. Grid de Pisici */
 .page-header {
   margin-bottom: 2.5rem;
   text-align: center;
@@ -161,7 +157,6 @@
   text-align: center;
 }
 
-/* 5. Butoane Adopție */
 .btn-adopt {
   width: 100%;
   padding: 12px;
@@ -173,7 +168,7 @@
 }
 
 .btn-adopt.active {
-  background-color: #10b981; /* Verde pentru succes */
+  background-color: #10b981; 
   color: white;
   cursor: pointer;
 }
@@ -184,7 +179,6 @@
   cursor: not-allowed;
 }
 
-/* 6. Profil Utilizator */
 .profile-container {
   display: flex;
   justify-content: center;
@@ -243,7 +237,6 @@
   border-radius: 4px;
 }
 
-/* 7. Animații */
 .fade-in {
   animation: slideUp 0.5s ease forwards;
 }
@@ -251,4 +244,64 @@
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 32px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.modal-content p {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-actions .btn-primary {
+  width: 100%;
+  padding: 14px;
+}
+
+.modal-actions .btn-secondary {
+  width: 100%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.modal-actions .btn-secondary:hover {
+  background: #e2e8f0;
 }

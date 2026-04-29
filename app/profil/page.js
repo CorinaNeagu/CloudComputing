@@ -19,6 +19,18 @@ export default function ProfilPage() {
 
   if (!session) return null;
 
+async function handleAdopt() {
+  "use client"; 
+
+  const res = await fetch("/api/adoptions", {
+    method: "POST",
+    body: JSON.stringify({ catId: cat._id, catName: cat.name }),
+    headers: { "Content-Type": "application/json" }
+  });
+
+  if (res.ok) alert("Cererea a fost trimisă!");
+}
+
   return (
     <main style={{ padding: "2rem", fontFamily: "sans-serif", maxWidth: "600px", margin: "0 auto" }}>
       <button 
@@ -46,7 +58,7 @@ export default function ProfilPage() {
         <div style={{ marginTop: "2rem", textAlign: "left", background: "#f9f9f9", padding: "1rem", borderRadius: "8px" }}>
           <h3>Detalii Cont (Cloud Data)</h3>
           <p><strong>ID Utilizator:</strong> {session.user.id}</p>
-          <p><strong>Status Sesiune:</strong> Activă (Stocată în MongoDB)</p>
+          <p><strong>Status Sesiune:</strong> Activă (Stocata în MongoDB)</p>
           <p><strong>Provider:</strong> Google OAuth 2.0</p>
         </div>
       </div>
