@@ -2,8 +2,6 @@ import { getCollection } from "@/lib/mongo";
 import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./details.module.css";
-import AdoptButton from "./AdoptButton";
 
 export default async function CatDetailsPage({ params }) {
   const { id } = await params;
@@ -17,36 +15,34 @@ export default async function CatDetailsPage({ params }) {
   }
 
   if (!cat) {
-    return <div className={styles.container}>Pisica nu a fost găsită!</div>;
+    return <div style={{ padding: "20px", textAlign: "center" }}>Pisica nu a fost găsită!</div>;
   }
 
   return (
-    <main className={styles.container}>
-      <Link href="/" className={styles.backLink}>
-        ← Înapoi la toate pisicile
+    <main style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
+      <Link href="/" style={{ marginBottom: "20px", display: "inline-block", color: "#666" }}>
+        ← Inapoi la toate pisicile
       </Link>
 
-      <div className={styles.card}>
-        <div className={styles.imageWrapper}>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", border: "1px solid #ddd", padding: "20px", borderRadius: "8px" }}>
+        <div style={{ position: "relative", width: "300px", height: "300px" }}>
           <Image
-            src={cat.image || "/placeholder-cat.jpg"}
+            src={cat.imageUrl || "/placeholder-cat.jpg"}
             alt={cat.name}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', borderRadius: "8px" }}
           />
         </div>
 
-        <div>
-          <h1 className={styles.title}>{cat.name}</h1>
-          <p className={styles.breed}>{cat.breed}</p>
+        <div style={{ flex: "1", minWidth: "250px" }}>
+          <h1 style={{ fontSize: "2rem", margin: "0 0 10px 0" }}>{cat.name}</h1>
+          <p style={{ fontStyle: "italic", color: "#555" }}>{cat.breed}</p>
           
-          <div className={styles.descriptionBox}>
-            <p className={styles.descriptionText}>
+          <div style={{ marginTop: "20px", padding: "15px", backgroundColor: "#f9f9f9", borderRadius: "4px" }}>
+            <p style={{ lineHeight: "1.6" }}>
               {cat.description || "Această pisică abia așteaptă un cămin."}
             </p>
           </div>
-
-          <AdoptButton catId={cat._id.toString()} catName={cat.name} />
         </div>
       </div>
     </main>
