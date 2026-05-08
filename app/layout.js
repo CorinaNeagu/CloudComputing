@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Adoptă o Pisică - Cloud App",
+  title: "Adopta o Pisica - Cloud App",
   description: "Proiect Cloud Computing 2026",
 };
 

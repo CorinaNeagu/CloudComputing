@@ -11,6 +11,6 @@ const RequestSchema = new mongoose.Schema({
     enum: ['pending', 'accepted', 'rejected'], 
     default: 'pending' 
   }
-}, { timestamps: true }); // Adaugă automat data creării
+}, { timestamps: true }); 
 
 export default mongoose.models.Request || mongoose.model("Request", RequestSchema);

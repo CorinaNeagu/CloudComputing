@@ -45,46 +45,66 @@ export async function POST(req) {
 
 export async function PATCH(req) {
   const client = new MongoClient(uri);
+
   try {
     const body = await req.json();
-    const { requestId, newStatus, adopterEmail, catName } = body; // 2. Extragem datele trimise din frontend
+    const { requestId, newStatus, adopterEmail, catName } = body;
 
     await client.connect();
     const db = client.db(dbName);
 
-    const originalRequest = await db.collection('adoption_requests').findOne({ 
-      _id: new ObjectId(requestId) 
-    });
-
-    if (!originalRequest) return NextResponse.json({ error: "Nu exista" }, { status: 404 });
-
-    // Actualizăm statusul în colecția principală
-    await db.collection('adoption_requests').updateOne(
-      { _id: new ObjectId(requestId) },
-      { $set: { status: newStatus } }
+    const result = await db.collection('adoption_requests').findOneAndUpdate(
+      {
+        _id: new ObjectId(requestId),
+        status: "pending"
+      },
+      { $set: { status: newStatus } },
+      { returnDocument: "after" }
     );
 
+    if (!result) { 
+      return NextResponse.json(
+        { error: "Cererea nu mai este pending sau ID invalid" },
+        { status: 400 }
+      );
+    }
+
+    const originalRequest = result;
+
     if (newStatus === 'accepted') {
-      // 3. Mutăm în colecția 'adoption'
-      await db.collection('adoption').insertOne({
-        ...originalRequest,
-        _id: new ObjectId(),
-        status: 'completed',
-        completedAt: new Date()
+      
+      await db.collection('adoption_requests').updateMany(
+        {
+          catId: originalRequest.catId,
+          _id: { $ne: new ObjectId(requestId) }
+        },
+        { $set: { status: "rejected" } }
+      );
+
+      const adoptionExists = await db.collection('adoption').findOne({
+        catId: originalRequest.catId
       });
 
-      // 4. TRIMITEM EMAIL-UL PRIN SENDGRID
+      if (!adoptionExists) {
+        await db.collection('adoption').insertOne({
+          ...originalRequest,
+          _id: new ObjectId(),
+          status: 'completed',
+          completedAt: new Date()
+        });
+      }
+
       if (adopterEmail) {
         const msg = {
           to: adopterEmail,
           from: "neagucorina22@stud.ase.ro",
-          subject: `Cererea de adopție pentru ${catName || 'pisicuță'} a fost acceptată!`,
+          subject: `🐾 Cererea de adoptie pentru ${catName || 'pisicuta'} a fost acceptata!`,
           html: `
             <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee;">
-              <h2 style="color: #4CAF50;">Vești bune!</h2>
+              <h2 style="color: #4CAF50;">Vesti bune!</h2>
               <p>Bună,</p>
-              <p>Cererea ta pentru <strong>${catName || 'pisicuță'}</strong> a fost acceptată cu succes.</p>
-              <p>Proprietarul te va contacta în curând pentru a stabili detaliile finale.</p>
+              <p>Cererea ta pentru <strong>${catName || 'pisicuta'}</strong> a fost acceptata cu succes.</p>
+              <p>Proprietarul te va contacta în curand pentru a stabili detaliile finale.</p>
               <br>
               <p>Echipa CatAdopt</p>
             </div>
@@ -95,6 +115,7 @@ export async function PATCH(req) {
     }
 
     return NextResponse.json({ success: true });
+
   } catch (e) {
     console.error("Eroare PATCH:", e);
     return NextResponse.json({ error: e.message }, { status: 500 });

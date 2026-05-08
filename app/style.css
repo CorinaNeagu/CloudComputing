@@ -481,3 +481,24 @@ button {
     transform: translateY(0);
   }
 }
+
+.cat-form input:invalid:focus, 
+.cat-form textarea:invalid:focus {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.cat-form input:placeholder-shown:invalid {
+    border-color: #ddd; /* Revenim la gri dacă nu a scris nimic încă */
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+  animation: shake 0.2s ease-in-out 0s 2;
+}

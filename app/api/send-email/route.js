@@ -12,15 +12,15 @@ export async function POST(req) {
       to: to, 
       from: process.env.SENDGRID_FROM_EMAIL,
       replyTo: fromEmail, 
-      subject: `🐾 Cerere de adopție: ${catName}`,
+      subject: `🐾 Cerere de adoptie: ${catName}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-          <h2 style="color: #6366f1;">Ai o cerere nouă de adopție!</h2>
+          <h2 style="color: #6366f1;">Ai o cerere noua de adoptie!</h2>
           <p>Utilizatorul <strong>${fromName}</strong> (${fromEmail}) este interesat de <strong>${catName}</strong>.</p>
           <p style="background: #f8fafc; padding: 15px; border-radius: 8px;">
-            "Bună! Am văzut anunțul tău pe CatAdopt și aș dori să aflu mai multe detalii despre procesul de adopție."
+            "Buna! Am vazut anuntul tau pe CatAdopt si as dori sa aflu mai multe detalii despre procesul de adoptie."
           </p>
-          <p>Poți răspunde direct la acest email pentru a lua legătura cu solicitantul.</p>
+          <p>Poti raspunde direct la acest email pentru a lua legatura cu solicitantul.</p>
           <footer style="margin-top: 20px; font-size: 12px; color: #94a3b8;">
             Trimis automat de platforma CatAdopt.
           </footer>
@@ -52,14 +52,14 @@ export async function PUT(req, { params }) {
       const msg = {
         to: adopterEmail,
         from: process.env.SENDGRID_FROM_EMAIL,
-        subject: `🎉 Veste bună: Cererea ta pentru ${catName} a fost acceptată!`,
+        subject: `🎉 Veste bună: Cererea ta de adoptie pentru ${catName} a fost acceptata!`,
         html: `
           <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
             <h2 style="color: #10b981;">Felicitări! 🐾</h2>
-            <p>Cererea ta de adopție pentru <strong>${catName}</strong> a fost acceptată de către proprietar.</p>
-            <p>În scurt timp vei fi contactat pentru a stabili detaliile logistice.</p>
+            <p>Cererea ta de adoptie pentru <strong>${catName}</strong> a fost acceptata de catre proprietar.</p>
+            <p>In scurt timp vei fi contactat pentru a stabili detaliile logistice.</p>
             <p style="background: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981;">
-              Vă mulțumim că ați ales să oferiți o casă unui suflețel!
+              Va multumim ca ati ales sa oferiti o casa unui animalut!
             </p>
             <footer style="margin-top: 20px; font-size: 12px; color: #94a3b8;">
               Echipa CatAdopt
@@ -69,7 +69,7 @@ export async function PUT(req, { params }) {
       };
 
       await sgMail.send(msg);
-      console.log("Email de acceptare trimis către:", adopterEmail);
+      console.log("Email de acceptare trimis catre:", adopterEmail);
     }
 
     return NextResponse.json({ success: true }, { status: 200 });
