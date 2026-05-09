@@ -47,7 +47,7 @@ export default async function CatDetailsPage({ params }) {
                   ✨ Aceasta pisica si-a găsit deja un stapan iubitor!
                 </span>
               ) : (
-                cat.description && "Aceasta pisica abia asteapta un camin iubitor."
+                cat.description && "Aceasta pisica abia asteapta un camin iubitor." || "Aceasta pisica abia asteapta un camin iubitor."
               )}
             </p>
           </div>
