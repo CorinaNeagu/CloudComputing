@@ -12,11 +12,18 @@ export default function HomePage({
   confirmAdoption 
 }) {
   const [filter, setFilter] = useState("available"); 
+  const [sortOrder, setSortOrder] = useState("recent");
 
-  const filteredCats = cats.filter(cat => {
+  const filteredCats = cats
+  .filter(cat => {
     if (filter === "available") return !cat.isAdopted;
     if (filter === "adopted") return cat.isAdopted;
     return true; 
+  })
+  .sort((a, b) => {
+    const dateA = new Date(a.createdAt || 0);
+    const dateB = new Date(b.createdAt || 0);
+    return sortOrder === "recent" ? dateB - dateA : dateA - dateB;
   });
 
   
@@ -58,6 +65,18 @@ export default function HomePage({
             >
               Toate
             </button>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px', gap: '10px', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: '500' }}>Ordonează după:</span>
+            <select 
+              value={sortOrder} 
+              onChange={(e) => setSortOrder(e.target.value)}
+              style={selectStyle}
+            >
+              <option value="recent">Cele mai recente</option>
+              <option value="oldest">Cele mai vechi</option>
+            </select>
           </div>
 
           <div className="cat-grid" style={{ marginTop: '2rem' }}>
@@ -160,6 +179,19 @@ const inactiveFilterStyle = {
   ...baseFilterStyle,
   backgroundColor: '#e2e8f0',
   color: '#475569'
+};
+
+const selectStyle = {
+  padding: '5px 12px',
+  borderRadius: '12px',
+  border: '1px solid #e2e8f0',
+  backgroundColor: 'white',
+  color: '#475569',
+  fontSize: '0.85rem',
+  fontWeight: '600',
+  cursor: 'pointer',
+  outline: 'none',
+  boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
 };
 
 const btnMyFriendStyle = { backgroundColor: '#DA70D6', color: 'white', cursor: 'default', width: '100%' };

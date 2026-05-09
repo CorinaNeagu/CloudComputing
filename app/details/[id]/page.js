@@ -42,7 +42,13 @@ export default async function CatDetailsPage({ params }) {
           <div style={descriptionWrapperStyle}>
             <h4 style={subTitleStyle}>Povestea lui {cat.name}:</h4>
             <p style={textStyle}>
-              {cat.description || "Aceasta pisica abia asteapta un camin iubitor."}
+              {cat.isAdopted ? (
+                <span style={{ fontWeight: 'bold', color: '#4CAF50' }}>
+                  ✨ Aceasta pisica si-a găsit deja un stapan iubitor!
+                </span>
+              ) : (
+                cat.description && "Aceasta pisica abia asteapta un camin iubitor."
+              )}
             </p>
           </div>
 

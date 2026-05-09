@@ -73,13 +73,11 @@ export default function CatCarousel({ cats = [] }) {
           <p style={description}>
             Aceasta pisicuta isi cauta o familie. 
           </p>
-          <button style={premiumBtn}>Autentifica-te pentru a ma adopta</button>
         </div>
       </div>
     </div>
   );
 }
-
 
 const stageWrapper = {
   position: "relative",
@@ -188,18 +186,7 @@ const description = {
   marginBottom: "40px"
 };
 
-const premiumBtn = {
-  padding: "18px 40px",
-  backgroundColor: "#1e293b",
-  color: "#fff",
-  border: "none",
-  borderRadius: "15px",
-  fontSize: "1rem",
-  fontWeight: "700",
-  cursor: "pointer",
-  boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
-  transition: "transform 0.2s"
-};
+
 
 const navCircle = {
   position: "absolute",

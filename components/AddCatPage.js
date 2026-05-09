@@ -11,7 +11,16 @@ export default function AddCatPage({
 }) {
   return (
     <section className="fade-in form-container" style={formContainerStyle}>
-      <button onClick={() => setView("home")} className="btn-back">← Inapoi</button>
+      <button 
+        onClick={() => {
+          setNewCat({ name: '', breed: '', city: '', description: '' });
+          if (typeof setImagePreview === 'function') setImagePreview(null); 
+          setView("home");
+        }} 
+        className="btn-back"
+      >
+        ← Inapoi
+      </button>
       <h2 style={{ marginTop: '1rem' }}>Adauga un anunt nou</h2>
       
       <form onSubmit={handleAddCat} className="cat-form" style={formStyle}>
