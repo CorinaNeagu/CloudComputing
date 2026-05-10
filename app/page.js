@@ -10,7 +10,7 @@ import HomePage from '@/components/HomePage';
 import EditCatPage from '@/components/EditCatPage';
 
 export default function MainPage() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [cats, setCats] = useState([]);
   const [view, setView] = useState("home"); 
   const [uploading, setUploading] = useState(false);
@@ -22,7 +22,15 @@ export default function MainPage() {
   const [userRequests, setUserRequests] = useState([]);
   const [loadingRequestId, setLoadingRequestId] = useState(null);
 
-  
+  if (status === "loading") {
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+        <p>Se verifica autentificarea...</p>
+      </div>
+    );
+  }
+
 useEffect(() => {
   const fetchData = async () => {
     try {
