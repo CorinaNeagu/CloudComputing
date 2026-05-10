@@ -22,16 +22,9 @@ export default function MainPage() {
   const [userRequests, setUserRequests] = useState([]);
   const [loadingRequestId, setLoadingRequestId] = useState(null);
 
-  if (status === "loading") {
-    return (
-      <div className="loading-screen">
-        <div className="spinner"></div>
-        <p>Se verifica autentificarea...</p>
-      </div>
-    );
-  }
 
 useEffect(() => {
+  if (status === "loading") return;
   const fetchData = async () => {
     try {
       const catsRes = await fetch('/api/cats');
@@ -48,7 +41,16 @@ useEffect(() => {
     }
   };
   fetchData();
-}, []);
+}, [status]);
+
+  if (status === "loading") {
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+        <p>Se verifica autentificarea...</p>
+      </div>
+    );
+  }
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
