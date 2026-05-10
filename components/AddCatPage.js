@@ -7,6 +7,7 @@ export default function AddCatPage({
   setNewCat, 
   handleImageChange, 
   imagePreview, 
+  setImagePreview,
   uploading 
 }) {
   return (
@@ -14,7 +15,13 @@ export default function AddCatPage({
       <button 
         onClick={() => {
           setNewCat({ name: '', breed: '', city: '', description: '' });
-          if (typeof setImagePreview === 'function') setImagePreview(null); 
+          if (typeof setImagePreview === 'function') {
+            setImagePreview(null); 
+          }
+          const fileInput = document.getElementById('cat-image-upload');
+          if (fileInput) {
+            fileInput.value = "";
+          }
           setView("home");
         }} 
         className="btn-back"

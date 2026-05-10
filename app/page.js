@@ -425,6 +425,7 @@ const handleRequestStatus = async (requestId, newStatus, catId) => {
               setNewCat={setNewCat}
               handleImageChange={handleImageChange}
               imagePreview={imagePreview}
+              setImagePreview={setImagePreview}
               uploading={uploading}
             />
           )}
