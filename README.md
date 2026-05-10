@@ -40,7 +40,7 @@ Proiectul adopta o strategie de tip **Multi-Cloud**, delegand responsabilitatile
 Aplicația utilizează un set de rute API de tip **RESTful**, care permit interactiunea intre interfata de utilizator si serviciile Cloud (MongoDB, SendGrid).
 
 | Metoda HTTP | Endpoint | Descriere | 
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **GET** | `/api/cats` | Preia lista tuturor pisicilor din MongoDB |
 | **POST** | `/api/adoption` | Trimite o cerere de adoptie in baza de date | 
 | **DELETE** | `/api/cats/[id]` | Sterge un anunt (permis doar proprietarului) |
