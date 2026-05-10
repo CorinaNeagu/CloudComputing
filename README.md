@@ -1,4 +1,5 @@
-[Click aici pentru a vedea Documentatia Completa (PDF)](./Documentatie_CatAdopt.pdf)
+> [!IMPORTANT]
+> ### 📄 [Click aici pentru a vedea Documentatia Completa (PDF)](./Documentatie_CatAdopt.pdf)
 
 **Student**: Neagu Corina-Maria
 **Master**: SIMPRE
@@ -9,8 +10,9 @@
 | :--- | :--- |
 | **Link Deploy Vercel** | https://cloud-computing-tan.vercel.app/ |
 | **Link Video Youtube** | https://youtu.be/TQFzDPtqd_c |
+| **Documentatie** | [Vezi PDF-ul aici](./Documentatie_CatAdopt.pdf) |
 
-# CatAdopt - Platformă Cloud-Native pentru Adoptii
+# CatAdopt - Platforma Cloud-Native pentru Adoptii
 
 ## 1. Introducere
 Tehnologiile **Cloud** au transformat modul în care interactionam cu mediile online, oferind atat scalabilitate, cat si accesibilitate globală. Proiectul **CatAdopt** reprezinta o platforma web dedicata facilitarii procesului de adoptie a animalelor, construita pe o arhitectură de tip **Cloud-Native**.
